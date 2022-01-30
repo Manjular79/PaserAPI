@@ -15,7 +15,7 @@ import java.util.stream.Collectors;
 
 /**
  * Class is responsible for parce the source (CSV) file content to java object.
- * it includes method for objects verification, value updation and metadata filtering
+ * it includes method for objects verification and metadata filtering
  * which all related to process complete list of SaleObjects.
  */
 public class CsvProcessor extends SalesProcessor implements SalesObjectParser {
@@ -26,7 +26,7 @@ public class CsvProcessor extends SalesProcessor implements SalesObjectParser {
     }
 
     /**
-     * Called once per Sale to parse file to Java object.
+     * Called once per SCV File to parse file to Java object.
      *
      * @param filePath The file path should be valid path.
      * @throws IOException

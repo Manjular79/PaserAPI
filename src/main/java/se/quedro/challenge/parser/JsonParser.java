@@ -11,16 +11,25 @@ import se.quedro.challenge.processors.SalesProcessor;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
+import java.io.IOException;
 import java.util.List;
 import java.util.stream.Collectors;
 
 /**
- *
+ * Class is responsible for parce the source (JSON) file content to java object.
+ * it includes method for objects verificationn and metadata filtering
+ * which all related to process complete list of SaleObjects.
  */
 public class JsonParser extends SalesProcessor implements SalesObjectParser {
 
     private final static Logger logger = LoggerFactory.getLogger(JsonParser.class);
 
+    /**
+     * Called once per JSON File to parse file to Java object.
+     *
+     * @param filePath The file path should be valid path.
+     * @throws IOException
+     */
     @Override
     public List<Sale> readAndProcessObject(String filePath) throws FileNotFoundException {
         File objectFile = loadExternalObjectFile(filePath);
@@ -33,6 +42,12 @@ public class JsonParser extends SalesProcessor implements SalesObjectParser {
         return saleList;
     }
 
+    /**
+     * Create common Sale list from parse objects for send API
+     *
+     * @param saleList Objects parse from resource file.
+     * @return new Sale Object list
+     */
     protected List<Sale> createCommonSaleList(List<JsonSale> saleList) {
         return saleList.stream()
                 .map(p -> new Sale(p.getType(), p.getSizeSqm(), p.getStartingPrice(), p.getPostalAddress().getCity(),
