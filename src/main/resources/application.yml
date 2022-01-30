@@ -1,0 +1,10 @@
+# Logger configuration
+logging:
+  level:
+    org:
+      springframework: info
+# Property configuration
+quedro:
+  accepted:
+    file:
+      types: json|csv|xml
